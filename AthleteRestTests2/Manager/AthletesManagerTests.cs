@@ -25,15 +25,16 @@ namespace AthleteRest.Manager.Tests
         [TestMethod()]
         public void AddTest()
         {
-           //var result = ATHmanager.Add(Athlete);
-           // Assert.AreEqual(1, ATHmanager );
-
-
+            Athlete a = new Athlete { Id = 1, Name = "Aleksander K", Country = "Sverige", Height = 1.22 };
+            Athlete ath = ATHmanager.Add(a);
+            Assert.AreEqual("Aleksander k", ath.Name);
         }
 
-        public void DeleteTest()
-        {
-            Assert.Fail();
-        }
+        //public void DeleteTest()
+        //{
+        //    Athlete b = new Athlete { Id = 1, Name = "Aleksander K", Country = "Sverige", Height = 1.22 };
+        //    Athlete ath = ATHmanager.Delete(b);
+        //    Assert.AreEqual()
+        //}
     }
 }

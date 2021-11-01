@@ -15,8 +15,8 @@ namespace AthleteRest.Manager
             new Athlete {Id = _nextId++, Name = "Jan", Country = "Danmark", Height = 1.87},
             new Athlete {Id = _nextId++, Name = "Svend", Country = "Danmark", Height = 1.90},
             new Athlete {Id = _nextId++, Name = "Diana", Country = "Danmark", Height = 2.10},
-            new Athlete {Id = _nextId++, Name = "Katrine", Country = "Danmark", Height = 1.67},
-            new Athlete {Id = _nextId++, Name = "Marie", Country = "Danmark", Height = 1.76},
+            new Athlete {Id = _nextId++, Name = "Katrine", Country = "Norge", Height = 1.67},
+            new Athlete {Id = _nextId++, Name = "Marie", Country = "Sverige", Height = 1.76},
         };
         
         public List<Athlete> GetAll(string contains)
@@ -30,6 +30,27 @@ namespace AthleteRest.Manager
             Data.Add(newAthlete);
             return newAthlete;
         }
+
+
+        public List<Athlete> GetByCountry(string country)
+        {
+            List<Athlete> athlete = new List<Athlete>(Data);
+            {
+                if (country != null)
+                {
+                    athlete = athlete.FindAll(athlete => athlete.Country != null && athlete.Country.StartsWith(country));
+
+                }
+            }
+            return athlete;
+        }
+
+        //public Athlete GetByCountry(string country)
+        //{
+        //    return Data.Find(ath => ath.Country == country);
+
+        //}
+
 
         public Athlete Delete(int id)
         {

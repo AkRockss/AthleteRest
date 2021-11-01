@@ -17,22 +17,37 @@ namespace AthleteRest.Controllers
     {
         private readonly AthletesManager _manager = new AthletesManager();
 
-        // GET: api/<AthletesController>
+        //GET: api/<AthletesController>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public ActionResult <IEnumerable<Athlete>> Get([FromQuery] string contains)
+        public ActionResult<IEnumerable<Athlete>> Get([FromQuery] string contains)
         {
             IEnumerable<Athlete> athlete = _manager.GetAll(contains);
-            if (athlete.Count() == 0 )
+            if (athlete.Count() == 0)
             {
                 return NotFound();
-            } else
+            }
+            else
             {
                 return Ok(athlete);
             }
-            
+
         }
+
+        [Microsoft.AspNetCore.Mvc.HttpGet("{country}")]
+        public List<Athlete> GetByCountry(string country)
+        {
+                return _manager.GetByCountry(country);
+        }
+
+
+        //[Microsoft.AspNetCore.Mvc.HttpGet("{country}")]
+        //public Athlete GetByCountry(string country)
+        //{
+        //    return _manager.GetByCountry(country);
+        //}
+
 
         // POST api/<AthletesController>
         [ProducesResponseType(StatusCodes.Status200OK)]
