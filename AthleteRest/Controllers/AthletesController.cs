@@ -21,9 +21,9 @@ namespace AthleteRest.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public ActionResult<IEnumerable<Athlete>> Get([FromQuery] string contains)
+        public ActionResult<IEnumerable<Athlete>> Get([FromQuery] string contains, [FromQuery] string sort_by)
         {
-            IEnumerable<Athlete> athlete = _manager.GetAll(contains);
+            IEnumerable<Athlete> athlete = _manager.GetAll(contains, sort_by);
             if (athlete.Count() == 0)
             {
                 return NotFound();

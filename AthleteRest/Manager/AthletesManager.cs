@@ -19,9 +19,22 @@ namespace AthleteRest.Manager
             new Athlete {Id = _nextId++, Name = "Marie", Country = "Sverige", Height = 1.76},
         };
         
-        public List<Athlete> GetAll(string contains)
+        public List<Athlete> GetAll(string contains, string sortBy = null)
         {
-            return new List<Athlete>(Data);
+            List<Athlete> ath = new List<Athlete>(Data);
+
+            if (sortBy != null)
+            {
+                switch (sortBy.ToLower())
+                {
+                    case "height":
+                        ath = ath.OrderByDescending(ath => ath.Height).ToList();
+                        break;
+
+                       
+                }
+            }
+                return ath;
         }
 
         public Athlete Add(Athlete newAthlete)
@@ -31,7 +44,7 @@ namespace AthleteRest.Manager
             return newAthlete;
         }
 
-       
+
         public List<Athlete> GetByCountry(string country)
         {
             List<Athlete> athlete = new List<Athlete>(Data);
@@ -41,15 +54,10 @@ namespace AthleteRest.Manager
                     athlete = athlete.FindAll(athlete => athlete.Country != null && athlete.Country.StartsWith(country));
 
                 }
+                return athlete;
             }
-            return athlete;
         }
 
-        //public Athlete GetByCountry(string country)
-        //{
-        //    return Data.Find(ath => ath.Country == country);
-
-        //}
 
 
         public Athlete Delete(int id)
