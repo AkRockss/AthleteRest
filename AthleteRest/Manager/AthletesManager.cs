@@ -31,7 +31,7 @@ namespace AthleteRest.Manager
             return newAthlete;
         }
 
-
+       
         public List<Athlete> GetByCountry(string country)
         {
             List<Athlete> athlete = new List<Athlete>(Data);
@@ -59,6 +59,8 @@ namespace AthleteRest.Manager
             Data.Remove(athlete);
             return athlete;
         }
+
+
 
 
     }
